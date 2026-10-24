@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message for Majesty ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3, #ffc3a0);
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 35px 22px;
+            border-radius: 25px;
+            width: 85%;
+            max-width: 380px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            color: #ff3366;
+            font-size: 30px;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .heart {
+            font-size: 60px;
+            animation: beat 1s infinite;
+        }
+
+        button {
+            padding: 13px 28px;
+            border: none;
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #yes {
+            background: #ff3366;
+            color: white;
+        }
+
+        #no {
+            background: #eeeeee;
+            color: #333;
+            position: absolute;
+            left: 55%;
+            top: 85%;
+        }
+
+        .buttons {
+            position: relative;
+            height: 80px;
+            margin-top: 15px;
+        }
+
+        @keyframes beat {
+            50% { transform: scale(1.2); }
+        }
+
+        .firework {
+            position: fixed;
+            font-size: 30px;
+            pointer-events: none;
+            animation: fly 2s ease-out forwards;
+            z-index: 5;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-300px) scale(2);
+                opacity: 0;
+            }
+        }
+
+        #celebration {
+            display: none;
+            color: #ff3366;
+            font-size: 23px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card" id="card">
+        <div class="heart">❤️</div>
+
+        <h1>Hey Majesty! 🥰</h1>
+
+        <p>
+            I'm Billy ❤️<br>
+            I have a special question for you...
+        </p>
+
+        <h2>Majesty, will you come over? 💕</h2>
+
+        <div class="buttons">
+            <button id="yes" onclick="sayYes()">YES 😍</button>
+            <button id="no" onmouseover="moveNo()" onclick="moveNo()">NO 🙈</button>
+        </div>
+
+        <div id="celebration">
+            Yaaay Majesty! ❤️🎉<br>
+            You just made Billy smile! 🥹💕
+        </div>
+    </div>
+
+    <script>
+        function moveNo() {
+            const no = document.getElementById("no");
+
+            const maxX = window.innerWidth - no.offsetWidth - 20;
+            const maxY = window.innerHeight - no.offsetHeight - 20;
+
+            no.style.position = "fixed";
+            no.style.left = Math.max(10, Math.random() * maxX) + "px";
+            no.style.top = Math.max(10, Math.random() * maxY) + "px";
+        }
+
+        function sayYes() {
+            document.getElementById("celebration").style.display = "block";
+
+            document.querySelector(".heart").innerHTML = "💖";
+            document.querySelector("h2").innerHTML = "SHE SAID YES! 😍";
+
+            document.getElementById("no").style.display = "none";
+            document.getElementById("yes").style.display = "none";
+
+            for (let i = 0; i < 70; i++) {
+                setTimeout(() => {
+                    const emojis = ["🎆", "🎉", "❤️", "💖", "✨", "🥰"];
+                    const fw = document.createElement("div");
+
+                    fw.className = "firework";
+                    fw.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                    fw.style.left = Math.random() * 100 + "vw";
+                    fw.style.top = (40 + Math.random() * 50) + "vh";
+
+                    document.body.appendChild(fw);
+
+                    setTimeout(() => fw.remove(), 2000);
+                }, i * 40);
+            }
+        }
+    </script>
+
+</body>
+</html>
